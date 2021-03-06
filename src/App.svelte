@@ -96,11 +96,7 @@
   * {
     font-family: 'Minecraft';
   }
-  .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+
   ul {
     list-style: none;
   }
@@ -120,7 +116,6 @@
   }
   .autocomplete {
     position: relative;
-    margin-bottom: 3em;
   }
   .autocomplete-items {
     position: absolute;
