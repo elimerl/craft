@@ -1,0 +1,7 @@
+{
+  "imports": {
+    "fuse.js": "./fusejs.js",
+    "minecraft-data": "./minecraft-data.js",
+    "svelte/internal": "./svelte/internal.js"
+  }
+}
