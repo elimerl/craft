@@ -6,9 +6,11 @@
 		"lint": "prettier --check \"src/**/*.{ts,js}\""
 	},
 	"dependencies": {
+		"@types/pluralize": "^0.0.29",
 		"canvas-confetti": "^1.2.0",
 		"fuse.js": "^6.4.6",
 		"minecraft-data": "^2.79.0",
+		"pluralize": "^8.0.0",
 		"svelte": "^3.35.0"
 	},
 	"devDependencies": {

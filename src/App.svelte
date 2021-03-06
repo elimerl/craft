@@ -3,6 +3,7 @@
   import Item from './components/Item.svelte';
   import { fuse, search as _itemSearch } from './core/index';
   import { mcData } from './core/util';
+  import pluralize from 'pluralize';
   let search: string = 'wooden axe';
   let ingredients = itemSearch(search);
   let message = genMessage(search);
@@ -39,9 +40,9 @@
     const multiplier = parseInt(search.split('*')[1]);
     try {
       const item = fuse.search(search.split('*')[0])[0].item.displayName;
-      return `Materials you need for ${
-        isNaN(multiplier) ? '1' : multiplier
-      } ${item}${isNaN(multiplier) ? '' : 's'}:`;
+      return `Materials you need for ${isNaN(multiplier) ? '1' : multiplier} ${
+        isNaN(multiplier) ? item : pluralize(item)
+      }:`;
     } catch (error) {
       return `Couldn't find that item!`;
     }
