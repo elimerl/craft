@@ -9,11 +9,11 @@
       "imports": []
     },
     "dist/App.svelte.css": {
-      "bytes": 871,
+      "bytes": 943,
       "imports": []
     },
     "_snowpack/pkg/svelte/internal.js": {
-      "bytes": 9380,
+      "bytes": 9158,
       "imports": []
     },
     "dist/components/Item.svelte.css": {
@@ -25,7 +25,7 @@
       "imports": []
     },
     "dist/components/Item.svelte.js": {
-      "bytes": 2958,
+      "bytes": 3366,
       "imports": [
         {
           "path": "dist/components/Item.svelte.css",
@@ -59,7 +59,7 @@
       "imports": []
     },
     "dist/core/index.js": {
-      "bytes": 288,
+      "bytes": 337,
       "imports": [
         {
           "path": "dist/core/util.js",
@@ -76,14 +76,10 @@
       "imports": []
     },
     "dist/App.svelte.js": {
-      "bytes": 11744,
+      "bytes": 13013,
       "imports": [
         {
           "path": "dist/App.svelte.css",
-          "kind": "import-statement"
-        },
-        {
-          "path": "_snowpack/pkg/svelte/internal.js",
           "kind": "import-statement"
         },
         {
@@ -145,7 +141,7 @@
           "bytesInOutput": 0
         },
         "_snowpack/pkg/svelte/internal.js": {
-          "bytesInOutput": 3253
+          "bytesInOutput": 3250
         },
         "dist/components/Item.svelte.css": {
           "bytesInOutput": 0
@@ -154,43 +150,43 @@
           "bytesInOutput": 325458
         },
         "dist/components/Item.svelte.js": {
-          "bytesInOutput": 1070
+          "bytesInOutput": 1312
         },
         "_snowpack/pkg/minecraft-data.js": {
-          "bytesInOutput": 10439455
+          "bytesInOutput": 10439473
         },
         "dist/core/util.js": {
           "bytesInOutput": 849
         },
         "_snowpack/pkg/fusejs.js": {
-          "bytesInOutput": 15572
+          "bytesInOutput": 15568
         },
         "dist/core/index.js": {
-          "bytesInOutput": 95
+          "bytesInOutput": 127
         },
         "_snowpack/pkg/pluralize.js": {
           "bytesInOutput": 6093
         },
         "dist/App.svelte.js": {
-          "bytesInOutput": 3994
+          "bytesInOutput": 4610
         },
         "dist/index.js": {
           "bytesInOutput": 63
         }
       },
-      "bytes": 10796118
+      "bytes": 10797019
     },
     "../~~bundle~~/dist/index.css": {
       "imports": [],
       "inputs": {
         "dist/App.svelte.css": {
-          "bytesInOutput": 860
+          "bytesInOutput": 931
         },
         "dist/components/Item.svelte.css": {
           "bytesInOutput": 473
         }
       },
-      "bytes": 1334
+      "bytes": 1405
     }
   }
 }
