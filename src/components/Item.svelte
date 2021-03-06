@@ -4,11 +4,26 @@
   export let item: string = 'diamond_sword';
   export let count: number = 1;
   export let size: number = 64;
+  const canvas = document.createElement('canvas');
+  canvas.width = 512;
+  canvas.height = 512;
+
+  const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
   function getItemTex(item: string) {
     const _item = items.find((v) => v.name === item);
     return _item
       ? `data:image/png;base64,${_item.texture}`
-      : 'https://via.placeholder.com/64x64';
+      : genPlaceholder(item);
+  }
+  function genPlaceholder(text: string) {
+    ctx.textAlign = 'center';
+    ctx.fillStyle = 'black';
+
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.font = '6em "Minecraft"';
+    ctx.fillStyle = 'white';
+    ctx.fillText(text, canvas.width / 2, canvas.height / 2);
+    return canvas.toDataURL();
   }
 </script>
 

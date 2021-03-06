@@ -102,7 +102,7 @@ export function getRawIngredients(
   }
 }
 
-interface CraftingResult {
+export interface CraftingResult {
   count: number;
   id: number;
 }

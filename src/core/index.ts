@@ -5,5 +5,9 @@ export const fuse = new Fuse(Object.values(mcData.items), {
   keys: ['displayName'],
 });
 export const search = (query: string) => {
-  return getRawIngredients(fuse.search(query)[0].item.id);
+  try {
+    return getRawIngredients(fuse.search(query)[0].item.id);
+  } catch (error) {
+    return [];
+  }
 };

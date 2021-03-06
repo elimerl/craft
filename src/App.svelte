@@ -1,14 +1,14 @@
 <script lang="ts">
-  import { bind } from 'svelte/internal';
   import Item from './components/Item.svelte';
   import { fuse, search as _itemSearch } from './core/index';
-  import { mcData } from './core/util';
+  import { getRecipeToCraft, mcData } from './core/util';
   import pluralize from 'pluralize';
   let search: string = 'wooden axe';
   let ingredients = itemSearch(search);
   let message = genMessage(search);
   let autocomplete: string[] = [];
   let mouseInInput = false;
+  let meant: string;
   const inputonfocus = () => {
     mouseInInput = true;
     console.log('focused');
@@ -27,10 +27,16 @@
   }
   function itemSearch(search: string) {
     const multiplier = parseInt(search.split('*')[1]) || 1;
+    console.log(
+      _itemSearch(search.split('*')[0]).map((v) => ({
+        ...v,
+        count: v.count * Math.floor(multiplier),
+      })),
+    );
     try {
       return _itemSearch(search.split('*')[0]).map((v) => ({
         ...v,
-        count: v.count * multiplier,
+        count: v.count * Math.floor(multiplier),
       }));
     } catch (error) {
       return [];
@@ -38,14 +44,37 @@
   }
   function genMessage(search: string) {
     const multiplier = parseInt(search.split('*')[1]);
+    if (multiplier === 0) search = search.split('*')[0];
     try {
-      const item = fuse.search(search.split('*')[0])[0].item.displayName;
-      return `Materials you need for ${isNaN(multiplier) ? '1' : multiplier} ${
-        isNaN(multiplier) ? item : pluralize(item)
-      }:`;
+      const _item = fuse.search(search.split('*')[0])[0].item;
+      const item = _item.displayName;
+      meant =
+        (getRecipeToCraft(_item.id).result as { count: number }).count !== 1 &&
+        multiplier > 1
+          ? `(I meant ${isNaN(multiplier) ? 1 : multiplier} ${
+              isNaN(multiplier)
+                ? item.toLowerCase()
+                : pluralize(item).toLowerCase()
+            })`
+          : '';
+
+      return `Materials you need for ${
+        isNaN(multiplier)
+          ? '1'
+          : multiplier *
+            (getRecipeToCraft(_item.id).result as { count: number }).count
+      } ${isNaN(multiplier) ? item : pluralize(item)}`;
     } catch (error) {
       return `Couldn't find that item!`;
     }
+  }
+  function changeSearch() {
+    const _item = fuse.search(search.split('*')[0])[0].item;
+    const newCount = Math.floor(
+      parseInt(search.split('*')[1]) /
+        (getRecipeToCraft(_item.id).result as { count: number }).count,
+    );
+    search = search.split('*')[0] + (newCount > 1 ? '*' + newCount : '');
   }
 </script>
 
@@ -80,15 +109,22 @@
       </div>
     </div>
 
-    <p>{message}</p>
+    <p>
+      {message}:
+      <!-- svelte-ignore a11y-invalid-attribute -->
+      <a on:click={() => changeSearch()} href="javascript:void 0">{meant}</a>
+    </p>
 
-    <ul>
+    <div>
       {#each ingredients as item}
-        <li on:click={() => (search = item.item.displayName)}>
+        <div
+          class="ingredient"
+          on:click={() => (search = item.item.displayName)}
+        >
           <Item item={item.item.name} count={item.count} />
-        </li>
+        </div>
       {/each}
-    </ul>
+    </div>
   </div>
 </div>
 
@@ -97,14 +133,18 @@
     font-family: 'Minecraft';
   }
 
-  ul {
-    list-style: none;
-  }
-  li {
+  .ingredient {
     display: block;
     cursor: pointer;
     width: min-content;
     height: min-content;
+  }
+  a {
+    color: #333;
+    transition: all 0.5s;
+  }
+  a:hover {
+    color: #999;
   }
   @font-face {
     font-family: 'Minecraft';
