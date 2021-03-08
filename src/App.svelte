@@ -148,8 +148,8 @@
   }
   @font-face {
     font-family: 'Minecraft';
-    src: url('Minecraft.woff2') format('woff2'),
-      url('Minecraft.woff') format('woff');
+    src: url('./Minecraft.woff2') format('woff2'),
+      url('./Minecraft.woff') format('woff');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
