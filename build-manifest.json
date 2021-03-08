@@ -1,9 +1,5 @@
 {
   "inputs": {
-    "index.css": {
-      "bytes": 178,
-      "imports": []
-    },
     "_snowpack/env.js": {
       "bytes": 97,
       "imports": []
@@ -119,15 +115,6 @@
     }
   },
   "outputs": {
-    "../~~bundle~~/index.css": {
-      "imports": [],
-      "inputs": {
-        "index.css": {
-          "bytesInOutput": 133
-        }
-      },
-      "bytes": 134
-    },
     "../~~bundle~~/dist/index.js": {
       "imports": [],
       "exports": [
